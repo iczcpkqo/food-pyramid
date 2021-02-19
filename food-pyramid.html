@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            background-color: #f1f1f1;
+        }
+        /*control*/
+        .input {
+
+        }
+        .select {
+
+        }
+
+        .button {
+
+        }
+
+        .calendar {
+
+        }
+
+        .input-number {
+
+        }
+
+        .age-select {
+
+        }
+
+        /*page*/
+        .assignment-1 {
+            /*border: solid 1px #0f0;*/
+            text-align: center;
+            width: 100%;
+        }
+        .assignment-1 .position-box {
+            /*border: solid 1px #f00;*/
+            margin: 0 auto;
+            width: 1000px;
+        }
+        .assignment-1 .position-box .position-fp {
+            margin-top: 20px;
+        }
+
+        .assignment-1 .food-pyramid {
+            float: left;
+            height: 668px;
+            margin: 0px 30px 0px 0px;
+            width: 600px;
+        }
+
+        .food-pyramid .fp-main {
+            text-align: center;
+        }
+
+        .fp-main .floor {
+            height: 108px;
+            position: relative;
+            width: 600px;
+        }
+
+        .fp-main .floor .panel-color {
+            border-bottom: solid 108px #f00;
+            border-left: solid 48px transparent;
+            border-right: solid 48px transparent;
+            height: 0px;
+            margin: 0 auto;
+            /*margin-top: 10px;*/
+            width: 0px;
+            /*test*/
+            position: relative;
+            z-index: 0;
+        }
+
+        .fp-main .fl-1 .panel-color {
+            border-bottom-color: #f06;
+        }
+
+        .fp-main .fl-2 .panel-color {
+            border-bottom-color: #f93;
+            width: 100px;
+        }
+
+        .fp-main .fl-3 .panel-color {
+            border-bottom-color: #ff6;
+            width: 200px
+        }
+
+        .fp-main .fl-4 .panel-color {
+            border-bottom-color: #0cf;
+            width: 300px;
+        }
+
+        .fp-main .fl-5 .panel-color {
+            border-bottom-color: #c90;
+            width: 400px;
+        }
+
+        .fp-main .fl-6 .panel-color {
+            border-bottom-color: #0c0;
+            width: 500px;
+        }
+
+        .fl-operation {
+            text-align: center;
+        }
+         .fl-operation .fl-cen-box {
+             display: none;
+             margin: 0 auto;
+             position: relative;
+             top: -45px;
+             width: 60px;
+             z-index: 5000;
+        }
+
+        .floor .panel-color:hover ~ .fl-operation .fl-cen-box,
+        .fl-operation .fl-cen-box:hover {
+            display: block;
+        }
+
+        .food-pyramid {
+            /*border: solid 1px #f00;*/
+        }
+
+        .fl-operation .fl-cen-box .fl-cen-r {
+            float: right;
+            width: 20px;
+        }
+
+        .fp-main .floor .fl-operation .op-add,
+        .fp-main .floor .fl-operation .op-label,
+        .fp-main .floor .fl-operation .op-minus {
+            float: left;
+            margin: 0 auto
+        }
+
+        .fp-main .floor .fl-operation .op-minus {
+            margin-top: 5px;
+        }
+
+        .fp-main .floor .fl-operation .op-add i,
+        .fp-main .floor .fl-operation .op-minus i {
+            display: block;
+            float: left;
+            font-style: normal;
+            height: 0px;
+            width: 0px;
+        }
+
+        .fp-main .floor .fl-operation .op-add i {
+            border-bottom: solid 17px #000;
+            border-color: #666;
+            border-left: solid 10px rgba(0, 0, 0, 0);
+            border-right: solid 10px rgba(0, 0, 0, 0);
+        }
+
+        .fp-main .floor .fl-operation .op-minus i {
+            border-top: solid 17px #000;
+            border-color: #666;
+            border-left: solid 10px rgba(0, 0, 0, 0);
+            border-right: solid 10px rgba(0, 0, 0, 0);
+        }
+
+        .fl-operation .fl-cen-box .fl-cen-l {
+            float: left;
+            width: 30px;
+        }
+
+        .fp-main .floor .fl-operation .op-label {
+            background-color: #ccc;
+            border: solid 2px #f00;
+            border-color: #666;
+            border-radius: 30px;
+            height: 25px;
+            width: 25px;
+            margin: 5px 0px 0px 5px;
+        }
+
+        .fp-main .floor .fl-operation .op-label a {
+            color: #666;
+            line-height: 25px;
+            user-select: none;
+        }
+
+        /* eat too much */
+        .floor.level-1 .fl-operation .op-label {
+            background-color: #f99;
+            border-color: #c00;
+        }
+        .floor.level-1 .fl-operation .op-label a {
+            color: #c00;
+        }
+        .floor.level-1 .fl-operation .op-add i {
+            border-bottom-color: #c00;
+        }
+        .floor.level-1 .fl-operation .op-minus i {
+            border-top-color: #696;
+        }
+        .floor.level-1 .panel-color:after {
+            color: #c00!important;
+        }
+
+        /* eat too less */
+        .floor.level-2 .fl-operation .op-label {
+            background-color: #f99;
+            border-color: #c00;
+        }
+        .floor.level-2 .fl-operation .op-label a {
+            color: #c00;
+        }
+        .floor.level-2 .fl-operation .op-add i {
+            border-bottom-color: #696;
+        }
+        .floor.level-2 .fl-operation .op-minus i {
+            border-top-color: #c00;
+        }
+        .floor.level-2 .panel-color:after {
+            color: #c00!important;
+        }
+
+        /* eat good */
+        .floor.level-3 .fl-operation .op-label {
+            background-color: #cfc;
+            border-color: #696;
+        }
+        .floor.level-3 .fl-operation .op-label a {
+            color: #696;
+        }
+        .floor.level-3 .fl-operation .op-add i {
+            border-bottom-color: #696;
+        }
+        .floor.level-3 .fl-operation .op-minus i {
+            border-top-color: #696;
+        }
+
+        /* floor text HOVER */
+        .assignment-1 .floor .panel-color ~ .fl-text {
+            /*display: none;*/
+        }
+        .assignment-1 .floor .fl-text {
+            /*display: block;*/
+            float: left;
+            position: absolute;
+            z-index: 100;
+
+            /* need set by js */
+            /*left: 400px;*/
+            /*top: 0px;*/
+        }
+
+        .floor .fl-text .order {
+            background-color: #00ccff;
+            border: solid 4px #f00;
+            border-radius: 100px;
+            float: left;
+            height: 100px;
+            position: relative;
+            width: 100px;
+            z-index: 200;
+        }
+
+        .floor .fl-text .order label {
+            font-size: 48px;
+            font-weight: bold;
+            line-height: 100px;
+        }
+
+        .floor .fl-text .text-frame {
+            border: solid 2px #cc9900;
+            border-left: none;
+            border-radius: 10px;
+            float: left;
+            height: 80px;
+            left: 70px;
+            opacity: 0.7;
+            padding: 10px 15px 0px 50px;
+            position: absolute;
+            top: 7px;
+            width: 400px;
+            z-index: 150;
+        }
+
+        .floor .fl-text .text-frame .text-1 {
+            float: left;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .floor .fl-text .text-frame .text-2 {
+            float: left;
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        /* single floor css */
+        /*    test*/
+        .fl-1 .fl-text {
+            left: 80px;
+            top: -65px;
+        }
+        .fl-2 .fl-text {
+            left: 130px;
+            top: -65px;
+        }
+        .fl-3 .fl-text {
+            left: 180px;
+            top: -65px;
+        }
+        .fl-4 .fl-text {
+            left: 230px;
+            top: -65px;
+        }
+        .fl-5 .fl-text {
+            left: 280px;
+            top: -65px;
+        }
+        .fl-6 .fl-text {
+            left: 330px;
+            top: -65px;
+        }
+        /*    test end*/
+
+        /*floor 1*/
+        .floor.fl-1 .fl-text .order,
+        .floor.fl-1 .fl-text .text-frame {
+             border-color: #c36;
+             background-color: #fcc;
+         }
+
+        .floor.fl-1 .fl-text label,
+        .floor.fl-1 .fl-text label {
+            color: #c36;
+        }
+
+        /* floor 2 */
+        .floor.fl-2 .fl-text .order,
+        .floor.fl-2 .fl-text .text-frame {
+            border-color: #f60;
+            background-color: #fc9;
+        }
+
+        .floor.fl-2 .fl-text label,
+        .floor.fl-2 .fl-text label {
+            color: #f60;
+        }
+
+        /* floor 3 */
+        .floor.fl-3 .fl-text .order,
+        .floor.fl-3 .fl-text .text-frame {
+            border-color: #fc0;
+            background-color: #ffc;
+        }
+
+        .floor.fl-3 .fl-text label,
+        .floor.fl-3 .fl-text label {
+            color: #fc0;
+        }
+
+        /* floor 4 */
+        .floor.fl-4 .fl-text .order,
+        .floor.fl-4 .fl-text .text-frame {
+            border-color: #69f;
+            background-color: #cff;
+        }
+
+        .floor.fl-4 .fl-text label,
+        .floor.fl-4 .fl-text label {
+            color: #69f;
+        }
+
+        /* floor 5 */
+        .floor.fl-5 .fl-text .order,
+        .floor.fl-5 .fl-text .text-frame {
+            border-color: #c60;
+            background-color: #fc6;
+        }
+
+        .floor.fl-5 .fl-text label,
+        .floor.fl-5 .fl-text label {
+            color: #c60;
+        }
+
+        /* floor 6 */
+        .floor.fl-6 .fl-text .order,
+        .floor.fl-6 .fl-text .text-frame {
+            border-color: #396;
+            background-color: #cfc;
+        }
+
+        .floor.fl-6 .fl-text label,
+        .floor.fl-6 .fl-text label {
+            color: #396;
+        }
+
+        /* single floor show text  */
+        .floor .panel-color:after {
+            float: left;
+            font-size: 32px;
+            font-weight: bolder;
+            left: 0;
+            padding: 10px;
+            position: absolute;
+            transform: skew(-25deg, 0deg);
+        }
+
+        .floor.fl-1 .panel-color:after {
+            content: "Treats";
+            color: #f99;
+            font-size: 16px;
+            left: -35px;
+            top: 50px;
+        }
+        .floor.fl-2 .panel-color:after {
+            content: "Fats";
+            color: #fc6;
+            left: -5px;
+            top: -5px;
+        }
+        .floor.fl-3 .panel-color:after {
+            content: "Meat";
+            color: #fc6;
+        }
+        .floor.fl-4 .panel-color:after {
+            content: "Dairy";
+            color: #6ff;
+        }
+        .floor.fl-5 .panel-color:after {
+            content: "Starchy";
+            color: #963;
+        }
+        .floor.fl-6 .panel-color:after {
+            content: "Vegetables";
+            color: #093;
+        }
+
+        /* text box  */
+        .assignment-1 .text-box {
+           /*border: solid 1px #f00;*/
+            float: right;
+            height: 668px;
+            position: relative;
+            width: 350px;
+       }
+
+       .text-box .log-body{
+
+       }
+
+       .log-body .text-line {
+           /*border: solid 1px #f00;*/
+           height: 120px;
+       }
+
+       .text-line .label-l {
+           height: 50px;
+           text-align: left;
+           padding-left: 20px;
+           position: relative;
+       }
+
+        .text-line .label-l label.txt {
+            color: #999;
+            line-height: 50px;
+        }
+
+        .text-line .label-l label.note {
+            /*background-color: #fcc;*/
+            /*border: solid 1px #c00;*/
+            color: #f00;
+            font-size: 12px;
+            font-weight: bolder;
+            /*left: 140px;*/
+            /*padding: 10px;*/
+            /*position: absolute;*/
+            /*top: 15px;*/
+        }
+
+        .text-line .input-text-r {
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .text-line .input-text-r input {
+            border:solid 1px #b6bbc1;
+            color: #666;
+            border-radius: 5px;
+            padding: 6px 12px;
+            height: 24px;
+            width: 280px;
+        }
+        .text-line .input-text-r input:focus {
+            border: solid 1px #4ba8d7;
+            box-shadow: 0px 0px 5px #0cf;
+            outline: none;
+        }
+
+       .log-body .button-line {
+           height: 120px;
+           text-align: right;
+           padding-right: 25px;
+       }
+
+       .log-body .button-line .button-c {
+            line-height: 50px;
+       }
+
+       .log-body .button-line .button-c input[type="button"] {
+           background-color: #0d6efd;
+           border: none;
+           border-radius: 4px;
+           color: #fff;
+           height: 38px;
+           width: 85px;
+           outline: none;
+       }
+
+        .log-body .button-line .button-c input[type="button"]:hover,
+        .log-body .button-line .button-c input[type="button"]::selection {
+           background-color: #3D62D5;
+           box-shadow: 0px 0px 8px #0d6efd;
+           cursor: pointer;
+
+       }
+
+        /* NOTE */
+           /*temp */
+        .assignment-1 .notice-box * {
+            /*border: solid 1px #3D62D5;*/
+        }
+           /*temp end*/
+        .assignment-1 .notice-box {
+            background-color: #DCAA16;
+            border: solid 2px #203870;
+            bottom: 0px;
+            height: 170px;
+            left: 30px;
+            position: absolute;
+            /*overflow: hidden;*/
+            width: 280px;
+        }
+
+        .notice-box .tit {
+            border-bottom: solid 2px #203870;
+            /*cursor: move;*/
+            height: 30px;
+            position: relative;
+        }
+
+        .notice-box .tit .tit-text {
+            background-color: #203870;
+            /*cursor: move;*/
+            float: left;
+            height: 34px;
+            left: -2px;
+            position: absolute;
+            text-align: left;
+            top: -2px;
+            user-select: none;
+            width: 282px;
+            z-index: 50;
+        }
+
+        .notice-box .tit .tit-text label {
+            color: #7E91B0;
+            /*cursor: move;*/
+            font-weight: bolder;
+            line-height: 32px;
+            padding-left: 15px;
+        }
+
+        .notice-box.closed {
+            height: 30px;
+        }
+        .notice-box.closed .tit,
+        .notice-box.closed .tit .tit-text,
+        .notice-box.closed .tit .tit-text label {
+            cursor: pointer;
+        }
+        .notice-box.closed .con {
+            display: none;
+        }
+
+
+        .notice-box .tit .tit-close {
+            background-color: #6E2526;
+            color: #F7E8AC;
+            cursor: pointer;
+            float: right;
+            height: 34px;
+            position: absolute;
+            right: -2px;
+            top: -2px;
+            user-select: none;
+            width: 34px;
+            z-index: 100;
+        }
+
+        .notice-box .tit .tit-close i {
+            font-size: 20px;
+            font-style: normal;
+            line-height: 34px;
+        }
+
+        .notice-box .con {
+            margin-top: 10px;
+        }
+
+        .notice-box .con .con-line {
+            height: 50px;
+        }
+        .notice-box .con .con-line .con-line-l {
+            float: left;
+            text-align: right;
+            width: 130px;
+        }
+
+        .notice-box .con .con-line .con-line-l label {
+            line-height:  50px;
+            color: #3C6778;
+        }
+
+        .notice-box .con .con-line .con-line-r {
+            float: right;
+            text-align: left;
+            width: 130px;
+        }
+        .notice-box .con .con-line .con-line-r label{
+            color: #3C6778;
+            font-weight: bolder;
+            line-height:  50px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="assignment-1">
+        <div class="position-box">
+            <div class="position-fp">
+                <div class="food-pyramid">
+                    <div class="fp-main">
+
+                        <div class="floor fl-1" value="treats">
+<!--                            1-->
+                            <div class="panel-color"></div>
+
+                            <div class="fl-operation">
+                                <div class="fl-cen-box">
+                                    <div class="fl-cen-l">
+                                        <div class="op-label">
+                                            <a>0</a>
+                                        </div>
+                                    </div>
+                                    <div class="fl-cen-r">
+                                        <div class="op-add" value="sfd33d">
+                                            <i ></i>
+                                        </div>
+                                        <div class="op-minus">
+                                            <i value="1"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="fl-text">
+                                        <div class="order">
+                                            <label>
+                                                1
+                                            </label>
+                                        </div>
+                                        <div class="text-frame">
+                                            <label class="text-1">
+                                                We call these 'treats'
+                                            </label>
+                                            <label class="text-2">
+                                                foods that have high amounts of salt, fat and sugar. This is the least important shelf. Have a treat once or twice a week.
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floor fl-2" value="fats">
+<!--                            2-->
+                            <div class="panel-color"></div>
+
+                            <div class="fl-operation">
+                                <div class="fl-cen-box">
+                                    <div class="fl-cen-l">
+                                        <div class="op-label">
+                                            <a>0</a>
+                                        </div>
+                                    </div>
+                                    <div class="fl-cen-r">
+                                        <div class="op-add">
+                                            <i></i>
+                                        </div>
+                                        <div class="op-minus">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="fl-text">
+                                        <div class="order">
+                                            <label>
+                                                2
+                                            </label>
+                                        </div>
+                                        <div class="text-frame">
+                                            <label class="text-1">
+                                                Fats, spreads and oils
+                                            </label>
+                                            <label class="text-2">
+                                                Have small amounts and choose unsaturated or reduced-fat options.
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floor fl-3" value="meat">
+<!--                            3-->
+                            <div class="panel-color"></div>
+
+                            <div class="fl-operation">
+                                <div class="fl-cen-box">
+                                    <div class="fl-cen-l">
+                                        <div class="op-label">
+                                            <a>0</a>
+                                        </div>
+                                    </div>
+                                    <div class="fl-cen-r">
+                                        <div class="op-add">
+                                            <i></i>
+                                        </div>
+                                        <div class="op-minus">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="fl-text">
+                                        <div class="order">
+                                            <label>
+                                                3
+                                            </label>
+                                        </div>
+                                        <div class="text-frame">
+                                            <label class="text-1">
+                                                Meat and alternatives
+                                            </label>
+                                            <label class="text-2">
+                                                Have some meat, poultry, fish, eggs, beans and nuts. Choose lean options and have fish at least twice a week – one being oily.
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floor fl-4" value="dairy">
+<!--                            4-->
+                            <div class="panel-color"></div>
+
+                            <div class="fl-operation">
+                                <div class="fl-cen-box">
+                                    <div class="fl-cen-l">
+                                        <div class="op-label">
+                                            <a>0</a>
+                                        </div>
+                                    </div>
+                                    <div class="fl-cen-r">
+                                        <div class="op-add">
+                                            <i></i>
+                                        </div>
+                                        <div class="op-minus">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="fl-text">
+                                        <div class="order">
+                                            <label>
+                                                4
+                                            </label>
+                                        </div>
+                                        <div class="text-frame">
+                                            <label class="text-1">
+                                                Dairy
+                                            </label>
+                                            <label class="text-2">
+                                                Have some milk, yoghurt and cheese. Choose reduced-fat or low-fat.
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floor fl-5" value="starchy">
+<!--                            5-->
+
+                            <div class="panel-color"></div>
+
+
+                            <div class="fl-operation">
+                                <div class="fl-cen-box">
+                                    <div class="fl-cen-l">
+                                        <div class="op-label">
+                                            <a>0</a>
+                                        </div>
+                                    </div>
+                                    <div class="fl-cen-r">
+                                        <div class="op-add">
+                                            <i></i>
+                                        </div>
+                                        <div class="op-minus">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="fl-text">
+                                        <div class="order">
+                                            <label>
+                                                5
+                                            </label>
+                                        </div>
+                                        <div class="text-frame">
+                                            <label class="text-1">
+                                                Starchy foods
+                                            </label>
+                                            <label class="text-2">
+                                                Have wholemeal cereals and breads, potatoes, pasta or rice with each meal. Wholegrain is best.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floor fl-6" value="vegetables">
+<!--                            6-->
+                            <div class="panel-color"></div>
+
+                            <div class="fl-operation">
+                                <div class="fl-cen-box">
+                                    <div class="fl-cen-l">
+                                        <div class="op-label">
+                                            <a>0</a>
+                                        </div>
+                                    </div>
+                                    <div class="fl-cen-r">
+                                        <div class="op-add">
+                                            <i></i>
+                                        </div>
+                                        <div class="op-minus">
+                                            <i></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="fl-text">
+                                        <div class="order">
+                                            <label>
+                                                6
+                                            </label>
+                                        </div>
+                                        <div class="text-frame">
+                                            <label class="text-1">
+                                                Vegetables, salad and fruit
+                                            </label>
+                                            <label class="text-2">
+                                                Eat plenty of these, up to seven servings a day.
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-box">
+                <div class="log-body">
+
+                    <div class="text-line">
+                        <div class="label-l">
+                            <label for="age" class="txt">
+                                  Input your age:
+                            </label>
+                            <label id="age-note" class="note" >
+
+                            </label>
+                        </div>
+                        <div class="input-text-r">
+                            <input id="age" type="text" value="24">
+                        </div>
+                    </div>
+
+                    <div class="text-line">
+                        <div class="label-l">
+                            <label for="date" class="txt">
+                                  Select date:
+                            </label>
+                            <label id="date-note" class="note">
+                            </label>
+                        </div>
+                        <div class="input-text-r">
+                            <input id="date" type="date">
+                        </div>
+                    </div>
+
+                    <div class="button-line">
+                        <div class="button-c">
+                            <input id="save" type="button" value="SAVE">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="notice-box" class="notice-box closed">
+                    <!-- **Student Name:**  Xiang Mao  -->
+                    <!--   **Student ID:**  20251952   -->
+                    <div class="tit">
+                        <div id="tit-bar" class="tit-text">
+                            <label>
+                                Maynooth University
+                            </label>
+                        </div>
+                        <div id="tit-close" class="tit-close">
+                            <i>X</i>
+                        </div>
+                    </div>
+
+                    <div class="con">
+                        <div class="con-line">
+                            <div class="con-line-l">
+                                <label>
+                                    Student Name:
+                                </label>
+                            </div>
+                            <div class="con-line-r">
+                                <label>
+                                    Xiang Mao
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="con-line">
+                            <div class="con-line-l">
+                                <label>
+                                    Student ID:
+                                </label>
+                            </div>
+                            <div class="con-line-r">
+                                <label>
+                                    20251952
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var g_AmountFood = {
+        "amount": {
+            "treats": 0,
+            "fats": 0,
+            "meat": 0,
+            "dairy": 0,
+            "starchy": 0,
+            "vegetables": 0
+        },
+        "height": [108, 108, 108, 108, 108, 108],
+        "width": [0, 30, 20, 30, 40, 50]
+    };
+// rule = [min][max]
+    var g_HealthInfo = {
+        "level": {
+            "treats": 0,
+            "fats": 0,
+            "meat": 0,
+            "dairy": 0,
+            "starchy": 0,
+            "vegetables": 0,
+        },
+        "health_rules":[
+            {
+                "age": __AGE_MIN__,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[3,3],
+                    "starchy":[2,3],
+                    "vegetables":[3,4]
+                }
+            }, {
+                "age": 2,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[3,3],
+                    "starchy":[2,3],
+                    "vegetables":[3,4]
+                }
+            }, {
+                "age": 3,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[3,4],
+                    "dairy":[3,3],
+                    "starchy":[4,5],
+                    "vegetables":[4,6]
+                }
+            }, {
+                "age": 4,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[3,4],
+                    "dairy":[3,3],
+                    "starchy":[4,5],
+                    "vegetables":[4,6]
+                }
+            }, {
+                "age": 8,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[5,5],
+                    "starchy":[3,5],
+                    "vegetables":[5,7]
+                }
+            }, {
+                "age": 12,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[5,5],
+                    "starchy":[3,5],
+                    "vegetables":[5,7]
+                }
+            }, {
+                "age": 18,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[5,5],
+                    "starchy":[7,28],
+                    "vegetables":[5,7]
+                }
+            }, {
+                "age": 50,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[3,3],
+                    "starchy":[7,28],
+                    "vegetables":[5,7]
+                }
+            }, {
+                "age": __AGE_MAX__,
+                "rule":{
+                    "treats":[0,0],
+                    "fats":[0,0],
+                    "meat":[2,2],
+                    "dairy":[3,3],
+                    "starchy":[3,5],
+                    "vegetables":[5,7]
+                }
+            }
+        ]
+    };
+
+    var __H__ = 668;
+    var __L__ = 600;
+    var __GAP__ = 10;
+    var __FLOOR_MAX__ = 216;
+    var __FLOOR_MIN__ = 54;
+    var __FLOOR_STEP__ = 1;
+    var __FLOOR_COUNT__ = 6;
+    var __TAN_A__ = (__L__/2)/__H__;
+    var __AGE_MAX__ = 120;
+    var __AGE_MIN__ = 1;
+
+    // bind all "add button"
+    var opAdds = document.getElementsByClassName('op-add');
+    for (let i=0; i<opAdds.length; i++)
+        opAdds[i].addEventListener('click', opAddOnClick);
+
+    // bind all "minus button"
+    var opMinuses = document.getElementsByClassName('op-minus');
+    for (let i=0; i<opMinuses.length; i++)
+        opMinuses[i].addEventListener('click', opMinusOnClick);
+
+    // bind save button
+    var opSave = document.getElementById("save");
+    opSave.addEventListener('click', opSaveClick);
+    opSave.addEventListener('click', opAgeOnInput);
+
+    // bind calendar control
+    var opCalendar = document.getElementById("date");
+    opCalendar.addEventListener("keydown",opSaveClick);
+    opCalendar.addEventListener("keypress",opSaveClick);
+    opCalendar.addEventListener("keyup",opSaveClick);
+    opCalendar.addEventListener("blur",opSaveClick);
+    opCalendar.addEventListener("focus",opSaveClick);
+
+    // bind update circle
+    var opArrowBox = document.getElementsByClassName("fl-cen-r");
+    for(let i=0; i<opArrowBox.length; i++)
+        opArrowBox[i].addEventListener("click", updateAgeCircle);
+
+    // bind age button
+    var opAge = document.getElementById("age");
+    opAge.addEventListener('input', opAgeOnInput);
+
+    // bind Notice Window
+    var isPressBar = false;
+    var isMoved = false;
+    // bar
+    var titBar = document.getElementById("tit-bar");
+    titBar.addEventListener("click", expandWindow);
+   // close
+    var titClose = document.getElementById("tit-close");
+    titClose.addEventListener("click", foldWindow);
+
+
+    // init style Gap
+    initCss();
+    function initCss(){
+        document.querySelector(".floor.fl-2").style.cssText = "margin: " + __GAP__ + "px 0px;";
+        updatePyramidWidth();
+    }
+
+
+    function opAddOnClick(){
+        let belongFloor = this.parentNode.parentNode.parentNode.parentNode;
+        addNumber(belongFloor, 1)
+    };
+
+    function opMinusOnClick(){
+        let belongFloor = this.parentNode.parentNode.parentNode.parentNode;
+        addNumber(belongFloor, -1)
+        // updatePyramid();
+    }
+
+    function opSave() {
+
+    }
+
+    function addNumber(obj, offsetAmount){
+        let iFloor = obj.getAttribute("value");
+        let iAmount = g_AmountFood.amount[iFloor] + offsetAmount;
+        if(!(iAmount+1))
+            return;
+        g_AmountFood.amount[iFloor] = iAmount;
+        obj.getElementsByClassName("op-label")[0].getElementsByTagName("a")[0].innerHTML = iAmount;
+
+        addHeight(obj, offsetAmount);
+        updatePyramid();
+    }
+
+    function updatePyramid(){
+        // avg the height, if total amount equal 0
+        // updatePyramidToAvg();
+        updatePyramidHeight();
+        updatePyramidWidth();
+    }
+
+    function updatePyramidHeight(){
+        let floors = document.getElementsByClassName("floor");
+        for (let i=0; i<floors.length; i++){
+            floors[i].style.height = g_AmountFood.height[i] + 'px';
+            floors[i].getElementsByClassName("panel-color")[0].style.borderBottomWidth = g_AmountFood.height[i] + 'px';
+        }
+    }
+
+    function addHeight(obj, iAmount){
+        let iValue = jsonTranslate(obj.getAttribute("value"));
+        let iHeight = g_AmountFood.height[iValue] + iAmount*__FLOOR_STEP__*(__FLOOR_COUNT__-1);
+        if (iHeight > __FLOOR_MAX__ || iHeight < __FLOOR_MIN__)
+            return false;
+        for (let i in g_AmountFood.height)
+            if (i == iValue)
+                g_AmountFood.height[i] = iHeight;
+            else
+                g_AmountFood.height[i] -= iAmount*__FLOOR_STEP__;
+    }
+    function jsonTranslate(i){
+        switch (i){
+             case "treats": return 0;
+             case "fats":  return 1;
+             case "meat": return 2;
+             case "dairy": return 3;
+             case "starchy": return 4;
+             case "vegetables": return 5;
+        }
+    }
+
+    function updatePyramidWidth(){
+        let sumWidth = 0;
+        for (let i=1; i<g_AmountFood.width.length; i++){
+            sumWidth += g_AmountFood.height[i-1];
+            g_AmountFood.width[i] = (sumWidth+Math.min(i*10, 20))*(2*__TAN_A__);
+        }
+
+        let floors = document.getElementsByClassName("floor");
+        for (let i=0; i<floors.length; i++) {
+            floors[i].getElementsByClassName("panel-color")[0].style.width = g_AmountFood.width[i] + 'px';
+            floors[i].getElementsByClassName("panel-color")[0].style.borderLeftWidth = g_AmountFood.height[i]*__TAN_A__ + 'px';
+            floors[i].getElementsByClassName("panel-color")[0].style.borderRightWidth = g_AmountFood.height[i]*__TAN_A__ + 'px';
+        }
+    }
+
+    function updatePyramidToAvg() {
+        // for(let i in g_AmountFood.height)
+        //     if (!i)
+        // for (let j)
+    }
+
+    function opSaveClick(){
+        if(!verifyDate(document.getElementById("date").value)){
+            document.getElementById("date-note").innerHTML = "Please enter the correct content!";
+            return false;
+        }
+        document.getElementById("date-note").innerHTML = "";
+    }
+
+    function verifyDate(dateText){
+         let dateBox = dateText.split("-");
+         return !(dateBox[0] > 2021 || dateBox[0] < 2000);
+    }
+
+    function opAgeOnInput(){
+        opAge.value=opAge.value.replace(/[^\d]/g,'');
+        if(!verifyAge(opAge.value)) {
+            document.getElementById("age-note").innerHTML = "Please enter the correct content!";
+            return false;
+        }
+        document.getElementById("age-note").innerHTML = "";
+        return true;
+    }
+
+    function verifyAge(ageText){
+        return !(ageText > __AGE_MAX__ || ageText < __AGE_MIN__);
+    }
+
+    // according to the age text, update the style of age circle
+    function updateAgeCircle(){
+        calculateCircleLevel();
+        let floors = document.getElementsByClassName("floor");
+        for(let i in floors)
+            setAgeCircle(floors[i].getAttribute("value"), g_HealthInfo.level[floors[i].getAttribute("value")]);
+
+    }
+
+    function calculateCircleLevel(){
+        let iAge = document.getElementById("age").value;
+        if (!opAgeOnInput())
+            return false;
+        for(let i in g_HealthInfo.health_rules)
+            if(g_HealthInfo.health_rules[i].age > iAge)
+                for (let j in g_HealthInfo.health_rules[i].rule)
+                   // eat too much
+                   if(g_AmountFood.amount[j] > g_HealthInfo.health_rules[i].rule[j][1])
+                       g_HealthInfo.level[j] = 1;
+                   // eat too less
+                   else if(g_AmountFood.amount[j] < g_HealthInfo.health_rules[i].rule[j][0])
+                        g_HealthInfo.level[j] = 2;
+                    // eat great
+                   else
+                       g_HealthInfo.level[j] = 3;
+        return true;
+    }
+
+    function setAgeCircle(floor, level){
+        let floors = document.getElementsByClassName("floor");
+        for (let i in floors)
+            if (floors[i].getAttribute("value") == floor) {
+                floors[i].classList.remove("level-1", "level-2", "level-3");
+                floors[i].classList.add("level-" + level);
+                return true;
+            }
+    }
+
+    // NOTE Window
+    setTimeout(expandWindow,3000);
+    function expandWindow(){
+        document.getElementById("notice-box").classList.remove("closed");
+    }
+    function foldWindow(){
+        document.getElementById("notice-box").classList.add("closed");
+    }
+
+</script>
+
+</html>
